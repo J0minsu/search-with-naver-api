@@ -4,6 +4,7 @@ import com.msjo.shop.dto.req.ProductMypriceRequestDto;
 import com.msjo.shop.dto.req.ProductRequestDto;
 import com.msjo.shop.dto.res.ProductResponseDto;
 import com.msjo.shop.entity.Product;
+import com.msjo.shop.naver.dto.ItemDto;
 import com.msjo.shop.repository.ProductRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -58,4 +59,13 @@ public class ProductService {
 
         return new ProductResponseDto(product);
     }
+
+    @Transactional
+    public void updateBySearch(Long id, ItemDto itemDto) {
+        Product product = productRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("해당 상품은 존재하지 않습니다.")
+        );
+        product.updateByItemDto(itemDto);
+    }
+
 }

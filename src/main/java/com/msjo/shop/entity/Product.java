@@ -3,6 +3,7 @@ package com.msjo.shop.entity;
 import com.msjo.shop.dto.req.ProductMypriceRequestDto;
 import com.msjo.shop.dto.req.ProductRequestDto;
 import com.msjo.shop.entity.audit.Timestamped;
+import com.msjo.shop.naver.dto.ItemDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,5 +44,9 @@ public class Product extends Timestamped {
 
     public void update(ProductMypriceRequestDto request) {
         this.myprice = request.getMyprice();
+    }
+
+    public void updateByItemDto(ItemDto itemDto) {
+        this.lprice = itemDto.getLprice();
     }
 }
