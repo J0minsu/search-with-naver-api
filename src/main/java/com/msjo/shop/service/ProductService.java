@@ -1,4 +1,4 @@
-package com.msjo.shop.naver.service;
+package com.msjo.shop.service;
 
 import com.msjo.shop.dto.req.ProductMypriceRequestDto;
 import com.msjo.shop.dto.req.ProductRequestDto;
@@ -12,6 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -22,6 +25,14 @@ public class ProductService {
     ProductRepository productRepository;
 
     public static final int MIN_MY_PRODUCT = 100;
+
+    public List<ProductResponseDto> getProducts() {
+
+        List<Product> productList = productRepository.findAll();
+
+        return productList.stream().map(ProductResponseDto::new).toList();
+
+    }
 
     public ProductResponseDto createProduct(ProductRequestDto request) {
 
