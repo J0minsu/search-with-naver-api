@@ -1,5 +1,6 @@
 package com.msjo.shop.entity;
 
+import com.msjo.shop.dto.req.ProductMypriceRequestDto;
 import com.msjo.shop.dto.req.ProductRequestDto;
 import com.msjo.shop.entity.audit.Timestamped;
 import jakarta.persistence.*;
@@ -38,5 +39,9 @@ public class Product extends Timestamped {
         this.image = requestDto.getImage();
         this.link = requestDto.getLink();
         this.lprice = requestDto.getLprice();
+    }
+
+    public void update(ProductMypriceRequestDto request) {
+        this.myprice = request.getMyprice();
     }
 }
